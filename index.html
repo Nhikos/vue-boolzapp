@@ -42,8 +42,6 @@
                         <div class="section-search">
                             <div class="search-bar">
                                 <i class="fas fa-search"></i>
-                                <!-- <span class="search-text">Cerca o inizia una nuova chat</span> -->
-                                <!-- <input type="text" class="msg-input" placeholder="Cerca o inizia una nuova chat" :class="contacts.status ? 'status == true' " @keyup.enter=""> -->
                                 <input type="text" class="msg-input" placeholder="Cerca o inizia una nuova chat" @keyup.enter="contactsSearch">
                             </div>
                         </div>
@@ -88,7 +86,7 @@
                         <div class="content">
                             <div class="wallpaper">
                                 <div  v-for="message in contacts[activeIndex].messages" class="message" :class="message.status">
-                                    <div class="flex-test">
+                                    <div class="flex-container">
                                         <span class="msg-text" >{{ message.text }}</span>
                                         <span class="msg-time"> {{ message.date }} </span>
                                     </div>

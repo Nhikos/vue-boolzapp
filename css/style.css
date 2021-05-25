@@ -9,6 +9,14 @@ body {
     background-color: #DADBD5;
 }
 
+i {
+    cursor: pointer;
+}
+
+img {
+    cursor: pointer;
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -281,7 +289,7 @@ body {
     background-repeat: repeat;
 }
 
-.flex-test {
+.flex-container {
     width: 40%;
 }
 
@@ -299,14 +307,14 @@ body {
     align-items: flex-start;
 }
 
-.sent .flex-test {
+.sent .flex-container {
     padding: 6px 7px 8px 9px;
     margin-bottom: 12px;
     border-radius: 10px;
     background-color: #DCF8C6;
 }
 
-.received .flex-test {
+.received .flex-container {
     padding: 6px 7px 8px 9px;
     margin-bottom: 12px;
     border-radius: 10px;
