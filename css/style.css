@@ -274,18 +274,54 @@ body {
 }
 
 .wallpaper {
+    overflow-y: auto;
     height: 100%;
     padding: 0 87px;
     background-image: url("../img/mine.jpg");
     background-repeat: repeat;
 }
 
-.msg-text {
-    display: inline-block;
+.flex-test {
+    width: 40%;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.message.sent {
+    align-items: flex-end;
+}
+
+.message.received {
+    align-items: flex-start;
+}
+
+.sent .flex-test {
     padding: 6px 7px 8px 9px;
     margin-bottom: 12px;
     border-radius: 10px;
-    background-color: green;
+    background-color: #DCF8C6;
+}
+
+.received .flex-test {
+    padding: 6px 7px 8px 9px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+.msg-time {
+    
+    align-items: flex-end;
+    margin-left: 25px;
+    right: 4px;
+    bottom: 2px;
+    font-size: 11px;
+    color: grey;
+
 }
 
 .insert-msg {
@@ -331,6 +367,16 @@ body {
     font-size: 22px;
 }
 
+input {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+  }
+  
+  .msg-input:focus {
+    outline: none;
+  }
 
 /* HOVER */
 .contact-tab:hover {

@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-        <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <title>Boolzapp</title>
@@ -42,12 +42,14 @@
                         <div class="section-search">
                             <div class="search-bar">
                                 <i class="fas fa-search"></i>
-                                <span class="search-text">Cerca o inizia una nuova chat</span>
+                                <!-- <span class="search-text">Cerca o inizia una nuova chat</span> -->
+                                <!-- <input type="text" class="msg-input" placeholder="Cerca o inizia una nuova chat" :class="contacts.status ? 'status == true' " @keyup.enter=""> -->
+                                <input type="text" class="msg-input" placeholder="Cerca o inizia una nuova chat" @keyup.enter="contactsSearch">
                             </div>
                         </div>
                         <div class="contacts-container">
                             <div v-for="(contact, index) in contacts" class="contact" :class="(index == activeIndex) ? 'active' : ''"
-                            @click="setActive(index)">
+                            @click="setActive(index)" v-show="contact.visible == true">
                                 <div class="contact-tab">
                                     <div class="contact-img">
                                         <img :src="getContactImage(index)" :alt="contact.name">
@@ -70,7 +72,7 @@
                         <div class="nav-col-dx">
                             <div class="header-chat">
                                 <div class="chat-img">
-                                    <img src="img/avatar_1.jpg" alt="">
+                                    <img :src="getContactImage(activeIndex)" alt="">
                                 </div>
                                 <div  class="chat-text">
                                     <h4> {{ contacts[activeIndex].name }} </h4>
@@ -85,8 +87,11 @@
                         <!-- CHAT -->
                         <div class="content">
                             <div class="wallpaper">
-                                <div  class="msg-text">
-                                    <span>asdfgdsf</span>
+                                <div  v-for="message in contacts[activeIndex].messages" class="message" :class="message.status">
+                                    <div class="flex-test">
+                                        <span class="msg-text" >{{ message.text }}</span>
+                                        <span class="msg-time"> {{ message.date }} </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +104,8 @@
                                 <i class="fas fa-paperclip"></i>
                             </div>
                             <div class="write-text">
-                                <span>Scrivi un messaggio</span>
+                                <input type="text" class="msg-input" placeholder="Scrivi un messaggio" v-model="newMessage"
+                                @keyup.enter="addNewMessage">
                             </div>
                             <div class="voice-rec">
                                 <i class="fas fa-microphone"></i>

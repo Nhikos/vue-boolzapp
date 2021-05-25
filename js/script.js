@@ -88,6 +88,7 @@ var app = new Vue({
         ],
 
         activeIndex: 0,
+        newMessage: ""
     },
 
     methods: {
@@ -115,7 +116,37 @@ var app = new Vue({
 
         setActive: function(newIndex) {
             this.activeIndex = newIndex;  
-        }
+        },
+
+        addNewMessage: function() {
+            
+            this.contacts[this.activeIndex].messages.push({
+                date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                text: this.newMessage,
+                status: "sent",
+            });  
+            
+            setTimeout(() => {
+                this.contacts[this.activeIndex].messages.push({
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                    text: "ok",
+                    status: "received",
+                });  
+            }, 1000);
+
+            this.newMessage = "";
+        },
+
+        contactsSearch: function(event) {
+            const searchText = event.target.value;
+            this.contacts.forEach(contact => {
+                if (contact.name.toLowerCase().includes(searchText.toLowerCase())) {
+                    contact.visible = true;
+                } else {
+                    contact.visible = false;
+                }
+            });
+        },
     }
 });
 
